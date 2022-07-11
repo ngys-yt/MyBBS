@@ -12,16 +12,21 @@
         <title>MyBBS</title>
     </head>
     <header>
-        <h1 class="d-flex justify-content-center bg-info p-3 text-white">MyBBS</h1>
+        <h1 class="d-flex justify-content-center bg-info p-3">
+            <a href="{{ route('top') }}" class="text-decoration-none text-white">MyBBS</a>
+        </h1>
     </header>
     <body>
         <div class="container">
+            <!-- DB posts -->
             <div>
                 @forelse ($posts as $post)
+                    <!-- name / time -->
                     <div class="d-flex flex-row bg-secondary text-white align-items-center mt-1">
                         <div class="mr-5 ml-2">{{ $post->name }}</div>
                         <div>{{ $post->created_at }}</div>
                     </div>
+                    <!-- text -->
                     <div class="bg-light text-dark border border-secondary">
                         <div class="m-2">{!! nl2br($post->text) !!}</div>
                     </div>
@@ -29,9 +34,11 @@
                     <div class="d-flex justify-content-center">投稿はまだありません</div>
                 @endforelse
             </div>
+            <!-- pagination -->
             <div class="d-flex justify-content-center mt-3">
                 {{ $posts->links() }}
             </div>
+            <!-- create_post button -->
             <div class="d-flex justify-content-center m-4">
                 <a href="{{ route('create_post') }}" class="btn btn-primary text-white">投稿</a>
             </div>

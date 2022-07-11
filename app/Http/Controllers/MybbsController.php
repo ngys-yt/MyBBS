@@ -20,6 +20,11 @@ class MybbsController extends Controller
     // 投稿されたらDBに新しくデータ追加してtopページを読み込む
     public function store(Request $request){
         
+        $request->validate([
+            'name' => 'required|max:15',
+            'text' => 'required|max:500',
+        ]);
+
         $name = $request->name;
         $text = $request->text;
 
