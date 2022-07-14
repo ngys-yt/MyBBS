@@ -13,27 +13,22 @@
                 <!-- text -->
                 <div class="bg-light text-dark border border-secondary">
                     <div class="m-2">{!! nl2br($post->text) !!}</div>
+                    <a href="{{ route('destroy', ['id'=>$post->id]) }}" class="btn btn-danger text-white">削除</a>
+                    <a href="{{ route('edit', ['id'=>$post->id]) }}" class="btn btn-info text-white">編集</a>
                 </div>
             @empty
                 <div class="d-flex justify-content-center">投稿はまだありません</div>
             @endforelse
         </div>
+        
         <!-- pagination -->
-        <div class="d-flex justify-content-center mt-3">
+        {{-- <div class="d-flex justify-content-center mt-3">
             {{ $posts->links() }}
-        </div>
+        </div> --}}
+
         <!-- button -->
         <div class="d-flex justify-content-center m-4">
-            @guest
-                <a href="{{ route('welcome') }}" class="btn btn-primary text-white mr-5">戻る</a>
-            @else
-                <a class="btn btn-primary text-white mr-5" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <a href="{{ route('mypage') }}" class="btn btn-primary text-white mr-5">マイページ</a>
-            @endguest
-            <a href="{{ route('create_post') }}" class="btn btn-primary text-white">投稿</a>
+            <a href="{{ route('top') }}" class="btn btn-primary text-white mr-5">戻る</a>
         </div>
     </div>
 @endsection
